@@ -1,0 +1,24 @@
+﻿Scaffold-DbContext "Host=localhost;Port=1234;Database=TechStore;Username=postgres;Password=245387262;" Npgsql.EntityFrameworkCore.PostgreSQL -OutputDir Models -Force
+
+# syntax=docker/dockerfile:1
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
+WORKDIR /Application
+
+# Copy csproj and restore as distinct layers
+COPY *.csproj ./
+RUN dotnet restore
+
+# Copy everything else and build
+COPY ../
+RUN dotnet publish -c Release -o out
+
+# Build runtime image
+FROM mcr.microsoft.com/dotnet/aspnet:5.0
+WORKDIR /Application
+COPY --from=build-env /Application/out .
+
+# ENTRYPOINT ["dotnet", "Application.dll"]
+
+CMD ASPNETCORE_URLS=http://*:$PORT dotnet Application.dll
+
+postgres://Username:Password@Url:Port/DBname

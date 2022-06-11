@@ -1,0 +1,1 @@
+web: cd $HOME/Application && dotnet ./Application.dll --server.urls http://+:$POST ${CORE_ENVIRONMENT}
