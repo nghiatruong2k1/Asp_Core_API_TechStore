@@ -1,1 +1,1 @@
-web: cd $HOME/asp-techstore/Application
+web: cd $HOME/asp-techstore/Application && dotnet ./Application.dll --server.urls http://+:$POST ${CORE_ENVIRONMENT}
