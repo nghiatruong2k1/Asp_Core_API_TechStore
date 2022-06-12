@@ -17,17 +17,17 @@ namespace ASP_NET_CORE_API_TTTN
 
             CreateHostBuilder(args).Build().Run();
 
-            var configurations = new ConfigurationBuilder()
-                .AddCommandLine(args)
-                .Build();
+            //var configurations = new ConfigurationBuilder()
+            //    .AddCommandLine(args)
+            //    .Build();
 
-            new WebHostBuilder()
-                .UseConfiguration(configurations)
-                .UseKestrel()
-                .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseStartup<Startup>()
-                .Build()
-                .Run();
+            //new WebHostBuilder()
+            //    .UseConfiguration(configurations)
+            //    .UseKestrel()
+            //    .UseContentRoot(Directory.GetCurrentDirectory())
+            //    .UseStartup<Startup>()
+            //    .Build()
+            //    .Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
