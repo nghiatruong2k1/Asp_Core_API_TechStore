@@ -55,8 +55,9 @@ namespace ASP_NET_CORE_API_TTTN
             services.AddTransient<IEmailService, EmailService>();
             services.Configure<EmailConfigs>(Configuration.GetSection("EmailConfigs"));
             services.Configure<EmailAccount>(Configuration.GetSection("EmailAccount"));
+            String sqlStr = Configuration.GetConnectionString("PostgreSQL");
             services.AddDbContext<TechStoreContext>(item => 
-                item.UseNpgsql(Configuration.GetConnectionString("PostgreSQL"))
+                item.UseNpgsql(sqlStr)
             );
             services.AddControllers();
                //.ConfigureApiBehaviorOptions(options =>
