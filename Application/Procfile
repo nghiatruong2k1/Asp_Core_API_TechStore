@@ -1,1 +1,1 @@
-web: cd $HOME/Application && dotnet ./Application.dll --server.urls http://+:$POST ${CORE_ENVIRONMENT}
+web: cd $HOME/heroku_output/Application

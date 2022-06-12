@@ -24,3 +24,4 @@ WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "Application.dll"]
 
+CMD ASPNETCORE_URLS=http://*:$PORT dotnet Application.dll

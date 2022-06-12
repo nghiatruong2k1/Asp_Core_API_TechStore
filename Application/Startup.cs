@@ -56,7 +56,7 @@ namespace ASP_NET_CORE_API_TTTN
             services.Configure<EmailConfigs>(Configuration.GetSection("EmailConfigs"));
             services.Configure<EmailAccount>(Configuration.GetSection("EmailAccount"));
             services.AddDbContext<TechStoreContext>(item => 
-                item.UseNpgsql(Configuration.GetConnectionString("HerokuPostgreSQL"))
+                item.UseNpgsql(Configuration.GetConnectionString("PostgreSQL"))
             );
             services.AddControllers();
                //.ConfigureApiBehaviorOptions(options =>
