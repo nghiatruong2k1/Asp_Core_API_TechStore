@@ -29,7 +29,7 @@ namespace Application.Helper
             var credentials = new SigningCredentials(synKey, SecurityAlgorithms.HmacSha256Signature);
             var header = new JwtHeader(credentials);
 
-            var payload = new JwtPayload(id, null, null, null, DateTime.Today.AddDays(1));
+            var payload = new JwtPayload(id,null, null, null, DateTime.Today.AddDays(1));
             var synToken = new JwtSecurityToken(header, payload);
 
             return new JwtSecurityTokenHandler().WriteToken(synToken);

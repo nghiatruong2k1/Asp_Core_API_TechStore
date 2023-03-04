@@ -30,7 +30,7 @@ namespace Application.Controllers
             {
 
                 int id = GetId(Request);
-                if (id == 0)
+                if (id <= 0)
                 {
                     return NoContent();
                 }

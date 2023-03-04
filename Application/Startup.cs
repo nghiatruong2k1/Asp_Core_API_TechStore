@@ -96,7 +96,6 @@ namespace ASP_NET_CORE_API_TTTN
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseRouting();
-
             app.UseSession();
             app.UseCookiePolicy();
 
@@ -116,12 +115,14 @@ namespace ASP_NET_CORE_API_TTTN
                 app.UseHsts();
             }
 
-
+            //app.UseDeveloperExceptionPage();
+            //app.UseSwagger();
+            //app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ASP_NET_CORE_API v1"));
             app.UseHttpsRedirection();
 
 
             //Enable CORS
-            app.UseCors();
+            app.UseCors("default");
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

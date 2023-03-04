@@ -29,7 +29,7 @@ namespace Application.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {          
-            return Ok(Response.Cookies);
+            return Ok(Response);
         }
 
         [HttpPost]

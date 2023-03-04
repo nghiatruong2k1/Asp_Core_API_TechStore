@@ -3,8 +3,6 @@ using MailKit.Net.Smtp;
 using Microsoft.Extensions.Options;
 using MimeKit;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Application.Helper
@@ -21,7 +19,10 @@ namespace Application.Helper
         public EmailService(IOptions<EmailConfigs> settings)
         {
             _settings = settings.Value;
-            _email = new EmailAccount() { Username = Environment.GetEnvironmentVariable("ASPNETCORE_MAILER_EMAIL"),Password = Environment.GetEnvironmentVariable("ASPNETCORE_MAILER_PASSWORD") };
+            _email = new EmailAccount() { 
+                Username = Environment.GetEnvironmentVariable("ASPNETCORE_MAILER_EMAIL"),
+                Password = Environment.GetEnvironmentVariable("ASPNETCORE_MAILER_PASSWORD") 
+            };
         }
         public async Task<Boolean> SendEmail(EmailData data)
         {
@@ -37,10 +38,14 @@ namespace Application.Helper
             emailMessage.To.Add(emailTo);
             emailMessage.Subject = data.Subject;
             BodyBuilder emailBodyBuilder = new BodyBuilder();
-            emailBodyBuilder.HtmlBody = data.Body;
 
+
+            emailBodyBuilder.HtmlBody = data.Body;
             emailMessage.Body = new TextPart(MimeKit.Text.TextFormat.Html) { Text = data.Body };
+
+
             SmtpClient emailClient = new SmtpClient();
+
             await emailClient.ConnectAsync(_settings.Host, _settings.Port, _settings.UseSSL);
             await emailClient.AuthenticateAsync(email.Username, email.Password);
             await emailClient.SendAsync(emailMessage);
