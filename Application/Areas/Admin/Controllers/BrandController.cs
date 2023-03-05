@@ -13,7 +13,6 @@ using System.Threading.Tasks;
 namespace Application.Areas.Admin.Controllers
 {
     [Route("api/admin/[controller]")]
-    [EnableCors("default")]
     [ApiController]
     public class BrandController : AdminController
     {

@@ -12,7 +12,6 @@ namespace Application.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [EnableCors("default")]
     public class EmailController : BaseController
     {
         public EmailController(IEmailService service) : base(service)

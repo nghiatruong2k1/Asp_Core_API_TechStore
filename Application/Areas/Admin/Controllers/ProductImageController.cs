@@ -14,7 +14,6 @@ namespace Application.Areas.Admin.Controllers
 {
     [Route("api/admin/[controller]")]
     [ApiController]
-    [EnableCors("default")]
     public class ProductImageController : AdminController
     {
         ProductImageMasterRepository imageMasterRepository;

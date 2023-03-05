@@ -12,7 +12,6 @@ namespace Application.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [EnableCors("default")]
     public class OrderVoucherController : BaseController
     {
         OrderVoucherRepository orderVoucherRepository;

@@ -15,7 +15,6 @@ namespace Application.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [EnableCors("default")]
     public class UserController : BaseController
     {
         UserRepository userRepository;

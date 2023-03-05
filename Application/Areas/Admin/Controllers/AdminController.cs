@@ -12,7 +12,6 @@ using System.Threading.Tasks;
 namespace Application.Areas.Admin.Controllers
 {
     [Route("api/admin/[controller]")]
-    [EnableCors("default")]
     public class AdminController : BaseController
     {
         public AdminController(JwtService service) : base(service) { }

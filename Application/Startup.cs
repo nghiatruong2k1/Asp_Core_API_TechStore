@@ -44,14 +44,16 @@ namespace ASP_NET_CORE_API_TTTN
             services.AddSession();
             //Enable CORS
             services.AddCors(options=> {
-                options.AddPolicy("default", policy =>
-                 {
-                     policy.AllowAnyMethod()
-                          .AllowAnyHeader()
-                          .SetIsOriginAllowed(origin => true)
-                          .AllowCredentials();
-                 });
+                options.AddDefaultPolicy(
+                    policy =>
+                    {
+                        policy.AllowAnyMethod()
+                              .AllowAnyHeader()
+                              .SetIsOriginAllowed(origin => true)
+                              .AllowCredentials();
+                    });
             });
+
             services.AddTransient<IEmailService, EmailService>();
             services.Configure<EmailConfigs>(Configuration.GetSection("EmailConfigs"));
             services.AddDbContext<TechStoreContext>(item => 
@@ -115,9 +117,6 @@ namespace ASP_NET_CORE_API_TTTN
                 app.UseHsts();
             }
 
-            //app.UseDeveloperExceptionPage();
-            //app.UseSwagger();
-            //app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ASP_NET_CORE_API v1"));
             app.UseHttpsRedirection();
 
 

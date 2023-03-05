@@ -11,7 +11,6 @@ namespace Application.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [EnableCors("default")]
     public class OrderStatusController : BaseController
     {
         OrderStatusRepository orderStatusRepository;
