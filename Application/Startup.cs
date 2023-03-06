@@ -121,7 +121,7 @@ namespace ASP_NET_CORE_API_TTTN
 
 
             //Enable CORS
-            app.UseCors("default");
+            app.UseCors();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
@@ -130,7 +130,8 @@ namespace ASP_NET_CORE_API_TTTN
                 );
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller}/{action}/{id?}"
+                    pattern: "{controller}/{action}/{id?}",
+                    defaults: new { controller = "Home", action = "Index" }
                 );
             });
 
