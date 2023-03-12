@@ -105,6 +105,19 @@ namespace ASP_NET_CORE_API_TTTN
 
             app.UseForwardedHeaders();
 
+            //Enable CORS
+            app.UseCors();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                   name: "admin",
+                   pattern: "{area:exists}/{controller}/{action}/{id?}"
+                );
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller}/{action}/{id?}"
+                );
+            });
 
             if (env.IsDevelopment())
             {
@@ -120,20 +133,6 @@ namespace ASP_NET_CORE_API_TTTN
             app.UseHttpsRedirection();
 
 
-            //Enable CORS
-            app.UseCors();
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                   name: "admin",
-                   pattern: "{area:exists}/{controller}/{action}/{id?}"
-                );
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller}/{action}/{id?}",
-                    defaults: new { controller = "Home", action = "Index" }
-                );
-            });
 
         }
     }
