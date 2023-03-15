@@ -43,16 +43,7 @@ namespace ASP_NET_CORE_API_TTTN
             services.AddDistributedMemoryCache();
             services.AddSession();
             //Enable CORS
-            services.AddCors(options=> {
-                options.AddDefaultPolicy(
-                    policy =>
-                    {
-                        policy.AllowAnyMethod()
-                              .AllowAnyHeader()
-                              .SetIsOriginAllowed(origin => true)
-                              .AllowCredentials();
-                    });
-            });
+            services.AddCors();
 
             services.AddTransient<IEmailService, EmailService>();
             services.Configure<EmailConfigs>(Configuration.GetSection("EmailConfigs"));
@@ -106,7 +97,11 @@ namespace ASP_NET_CORE_API_TTTN
             app.UseForwardedHeaders();
 
             //Enable CORS
-            app.UseCors();
+            app.UseCors(builder => builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+            );
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
