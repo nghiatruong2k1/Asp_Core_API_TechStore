@@ -9,28 +9,24 @@ on:
   pull_request:
     branches: [ "main" ] 
 jobs:
-  deploy-to-github-pages:
-    # use ubuntu-latest image to run steps on
+  build:
     runs-on: ubuntu-latest
     steps:
-    # uses GitHub's checkout action to checkout code form the branch
-    - uses: actions/checkout@main
-    
-    # sets up .NET Core SDK 5.0
-    - name: Setup .NET Core SDK
-      uses: actions/setup-dotnet@v3
+    - uses: actions/checkout@main # Checkout the main branch
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v3 # Setup .NET Core
       with:
-        dotnet-version: 5.0.x
-        
+        dotnet-version: 5.0.x # Change to your version of .NET Core
     - name: Build with dotnet
-      run: dotnet build --configuration Release
-      
-    # publishes Blazor project to the release-folder
-    - name: Publish .NET Core Project
-      run: dotnet publish -c Release --no-build -o publishoutput
-    - name: Commit wwwroot to GitHub Pages
-      uses: JamesIves/github-pages-deploy-action@3.7.1
+      run: dotnet build --configuration Release 
+    - name: Publish Blazor webassembly using dotnet 
+      #create Blazor WebAssembly dist output folder in the project directory
+      run: dotnet publish -c Release --no-build -o publishoutput # Don't build again, just publish
+    - name: Publish generated Blazor webassembly to Netlify
+      uses: netlify/actions/cli@master #uses Netlify Cli actions
+      env: # These are the environment variables added in GitHub Secrets for this repo
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
       with:
-        GITHUB_TOKEN: ${{ github.token }}
-        BRANCH: main_page
-        FOLDER: release/wwwroot
+          args: deploy --dir=publishoutput/wwwroot --prod #push this folder to Netlify
+          secrets: '["NETLIFY_AUTH_TOKEN", "NETLIFY_SITE_ID"]'
