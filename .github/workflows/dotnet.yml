@@ -34,7 +34,7 @@ jobs:
       uses: odanado/deploy-to-netlify-action@test/v0.0.15
       with:
         dist-dir: /Application
-        netlify-site-id: ${{ secret.NETLIFT_SITE_ID }}
+        netlify-site-id: ${{ secrets.NETLIFT_SITE_ID }}
         netlify-auth-token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         github-token: ${{ github.token }}
 
