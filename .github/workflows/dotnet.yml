@@ -35,4 +35,4 @@ jobs:
       with:
         GITHUB_TOKEN: ${{ github.token }}
         BRANCH: main_page
-        FOLDER: publishoutput/wwwroot
+        FOLDER: publishoutput
