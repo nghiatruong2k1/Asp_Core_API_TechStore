@@ -30,3 +30,9 @@ jobs:
       with:
           args: deploy --dir=publishoutput/wwwroot --prod #push this folder to Netlify
           secrets: '["NETLIFY_AUTH_TOKEN", "NETLIFY_SITE_ID"]'
+    - name: Commit wwwroot to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@3.7.1
+      with:
+        GITHUB_TOKEN: ${{ github.token }}
+        BRANCH: main_page
+        FOLDER: publishoutput/wwwroot
