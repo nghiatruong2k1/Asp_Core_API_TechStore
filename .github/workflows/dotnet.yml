@@ -23,7 +23,7 @@ jobs:
       #create Blazor WebAssembly dist output folder in the project directory
       run: dotnet publish -c Release --no-build -o release # Don't build again, just publish
     - name: Publish generated Blazor webassembly to Netlify
-      uses: netlify/actions/cli@main #uses Netlify Cli actions
+      uses: netlify/actions/cli@master #uses Netlify Cli actions
       env: # These are the environment variables added in GitHub Secrets for this repo
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
