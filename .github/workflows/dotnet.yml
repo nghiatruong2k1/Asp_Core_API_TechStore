@@ -27,5 +27,5 @@ jobs:
           ACCESS_TOKEN: ${{ secrets.NETLIFY_ACCESS_TOKEN }}
           BASE_BRANCH: main # The branch the action should deploy from.
           BRANCH: main_base # The branch the action should deploy to.
-          FOLDER:  build/wwwroot  
+          FOLDER:  build
           SINGLE_COMMIT: true
